@@ -1,0 +1,330 @@
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Huella Ambiental</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f1117 0%, #1a1f2e 50%, #0f1117 100%);
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  color: #e2e8f0;
+  padding: 20px 14px 40px;
+}
+h1 {
+  font-size: clamp(22px, 6vw, 38px);
+  font-weight: 800;
+  background: linear-gradient(90deg, #4ade80, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+.header { text-align: center; margin-bottom: 28px; }
+.header p { color: #64748b; font-size: 13px; }
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.sec-title {
+  font-size: 11px; color: #94a3b8; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.chip {
+  padding: 5px 11px; border-radius: 20px; border: none; cursor: pointer;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  background: rgba(255,255,255,0.07); color: #94a3b8; transition: all .2s;
+}
+.chip.on-green { background: #4ade80; color: #0f1117; }
+.chip.on-blue  { background: #38bdf8; color: #0f1117; }
+label { font-size: 12px; color: #64748b; display: block; margin-bottom: 5px; }
+select, input {
+  width: 100%; padding: 10px 12px; border-radius: 10px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  color: #e2e8f0; font-size: 14px; font-family: inherit;
+  -webkit-appearance: none; appearance: none;
+}
+input[type=number] { width: 90px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-top: 4px; }
+.col-main { flex: 1; min-width: 160px; }
+.col-sm   { width: 90px; }
+.col-mid  { width: 110px; }
+.btn-add {
+  padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: #0f1117; font-weight: 700; font-size: 14px; font-family: inherit;
+  margin-top: 10px; width: 100%;
+}
+.item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.03); border-radius: 12px;
+  padding: 11px 13px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 9px;
+}
+.item-icon { font-size: 22px; flex-shrink: 0; }
+.item-body { flex: 1; min-width: 0; }
+.item-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; flex-wrap: wrap; gap: 4px; }
+.item-name { font-size: 13px; font-weight: 600; color: #e2e8f0; }
+.item-val  { font-size: 13px; font-weight: 700; }
+.item-sub  { font-size: 11px; color: #64748b; margin-bottom: 5px; }
+.bar-bg    { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; }
+.bar-fill  { height: 100%; border-radius: 2px; transition: width .5s; }
+.btn-del {
+  background: rgba(239,68,68,0.15); border: none; cursor: pointer;
+  color: #ef4444; border-radius: 8px; padding: 6px 9px;
+  font-size: 14px; flex-shrink: 0; font-family: inherit;
+}
+.totals { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 16px; }
+.total-card { border-radius: 14px; padding: 16px; text-align: center; }
+.total-icon { font-size: 26px; margin-bottom: 4px; }
+.total-val  { font-size: 24px; font-weight: 800; }
+.total-unit { font-size: 13px; font-weight: 400; margin-left: 3px; }
+.total-lbl  { font-size: 11px; color: #64748b; margin-top: 2px; }
+.total-desc { font-size: 10px; color: #475569; margin-top: 1px; }
+.cmp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.cmp-card { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 12px 13px; border: 1px solid rgba(255,255,255,0.05); }
+.cmp-icon { font-size: 20px; margin-bottom: 4px; }
+.cmp-val  { font-size: 20px; font-weight: 700; color: #e2e8f0; }
+.cmp-ref  { font-size: 10px; color: #64748b; line-height: 1.4; margin-top: 2px; }
+.cmp-num  { color: #475569; }
+.empty { text-align: center; padding: 36px 20px; color: #475569; }
+.empty .big { font-size: 44px; margin-bottom: 12px; }
+.empty p { font-size: 15px; margin-bottom: 8px; }
+.empty small { font-size: 11px; }
+.footer { text-align: center; font-size: 10px; color: #334155; margin-top: 6px; }
+.metric-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<div style="max-width:820px;margin:0 auto">
+
+  <div class="header">
+    <div style="font-size:44px;margin-bottom:8px">🌱</div>
+    <h1>Huella Ambiental</h1>
+    <p>Calcula el impacto ambiental de tu consumo alimentario</p>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">+ Agregar alimento</div>
+    <div class="chips" id="cat-chips"></div>
+    <div class="row">
+      <div class="col-main">
+        <label>Alimento</label>
+        <select id="sel-product"></select>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div class="col-sm">
+        <label>Cantidad (kg)</label>
+        <input type="number" id="inp-qty" min="0.1" step="0.1" placeholder="Ej: 3">
+      </div>
+      <div class="col-mid">
+        <label>Por</label>
+        <select id="sel-period">
+          <option value="semana">semana</option>
+          <option value="mes">mes</option>
+          <option value="anno">año</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-add" id="btn-add">Agregar</button>
+  </div>
+
+  <div class="card hidden" id="card-list">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+      <div class="sec-title" style="margin:0" id="list-title">Mi lista</div>
+      <div class="metric-row" id="metric-chips"></div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <span style="font-size:11px;color:#64748b">Ver por:</span>
+      <div class="chips" id="period-chips" style="margin:0"></div>
+    </div>
+    <div id="items-list"></div>
+  </div>
+
+  <div class="totals hidden" id="totals-grid"></div>
+
+  <div class="card hidden" id="card-cmp">
+    <div class="sec-title">Para que te imagines la escala...</div>
+    <div class="cmp-grid" id="cmp-grid"></div>
+  </div>
+
+  <div class="empty" id="empty-state">
+    <div class="big">🍽️</div>
+    <p>Agrega alimentos para calcular tu huella ambiental</p>
+    <small>Ejemplo: 3 kg de Pollo / semana · 1 kg de Res / semana</small>
+  </div>
+
+  <div class="footer">Datos: FAO · Our World in Data · Water Footprint Network · IPCC AR6</div>
+</div>
+
+<script>
+var DB = [
+  {name:"Res / Ternera",agua:15415,co2:27.0,ch4:300,tierra:164,cat:"Carnes",icon:"🐄"},
+  {name:"Cordero / Borrego",agua:10412,co2:24.5,ch4:250,tierra:185,cat:"Carnes",icon:"🐑"},
+  {name:"Cerdo",agua:5988,co2:12.1,ch4:50,tierra:11,cat:"Carnes",icon:"🐷"},
+  {name:"Pollo",agua:4325,co2:6.9,ch4:20,tierra:7.1,cat:"Carnes",icon:"🐔"},
+  {name:"Pavo",agua:4000,co2:6.5,ch4:18,tierra:7.0,cat:"Carnes",icon:"🦃"},
+  {name:"Salmon / Pescado",agua:2500,co2:6.1,ch4:5,tierra:3.7,cat:"Mar",icon:"🐟"},
+  {name:"Atun enlatado",agua:1900,co2:6.1,ch4:4,tierra:3.0,cat:"Mar",icon:"🐠"},
+  {name:"Camaron",agua:3600,co2:12.0,ch4:10,tierra:15.0,cat:"Mar",icon:"🦐"},
+  {name:"Queso",agua:3178,co2:13.5,ch4:120,tierra:10.2,cat:"Lacteos",icon:"🧀"},
+  {name:"Leche (litros)",agua:1020,co2:3.2,ch4:30,tierra:1.8,cat:"Lacteos",icon:"🥛"},
+  {name:"Yogur",agua:900,co2:2.2,ch4:22,tierra:1.5,cat:"Lacteos",icon:"🍶"},
+  {name:"Huevo",agua:3265,co2:4.5,ch4:15,tierra:5.7,cat:"Lacteos",icon:"🥚"},
+  {name:"Mantequilla",agua:5553,co2:11.9,ch4:100,tierra:9.0,cat:"Lacteos",icon:"🧈"},
+  {name:"Arroz",agua:2497,co2:4.0,ch4:70,tierra:2.8,cat:"Granos",icon:"🍚"},
+  {name:"Trigo / Pan",agua:1827,co2:1.6,ch4:2,tierra:3.6,cat:"Granos",icon:"🍞"},
+  {name:"Maiz",agua:1222,co2:1.7,ch4:2,tierra:2.0,cat:"Granos",icon:"🌽"},
+  {name:"Avena",agua:1788,co2:2.5,ch4:3,tierra:7.6,cat:"Granos",icon:"🌾"},
+  {name:"Frijoles",agua:4055,co2:2.0,ch4:5,tierra:8.9,cat:"Granos",icon:"🫘"},
+  {name:"Lentejas",agua:1250,co2:1.6,ch4:4,tierra:3.4,cat:"Granos",icon:"🌱"},
+  {name:"Soya / Tofu",agua:2145,co2:2.2,ch4:3,tierra:2.2,cat:"Granos",icon:"🫘"},
+  {name:"Jitomate",agua:214,co2:1.4,ch4:1,tierra:0.2,cat:"Verduras",icon:"🍅"},
+  {name:"Aguacate",agua:1981,co2:2.5,ch4:2,tierra:0.8,cat:"Verduras",icon:"🥑"},
+  {name:"Papa",agua:287,co2:0.5,ch4:1,tierra:0.6,cat:"Verduras",icon:"🥔"},
+  {name:"Zanahoria",agua:131,co2:0.4,ch4:0.5,tierra:0.3,cat:"Verduras",icon:"🥕"},
+  {name:"Manzana",agua:822,co2:0.4,ch4:0.5,tierra:0.5,cat:"Frutas",icon:"🍎"},
+  {name:"Naranja",agua:560,co2:0.4,ch4:0.5,tierra:0.3,cat:"Frutas",icon:"🍊"},
+  {name:"Platano",agua:790,co2:0.7,ch4:1,tierra:0.6,cat:"Frutas",icon:"🍌"},
+  {name:"Fresas",agua:348,co2:0.4,ch4:0.5,tierra:0.2,cat:"Frutas",icon:"🍓"},
+  {name:"Cafe (taza)",agua:140,co2:0.28,ch4:0.5,tierra:0.15,cat:"Bebidas",icon:"☕"},
+  {name:"Te (taza)",agua:34,co2:0.03,ch4:0.1,tierra:0.02,cat:"Bebidas",icon:"🍵"},
+  {name:"Cerveza (litro)",agua:300,co2:0.63,ch4:1,tierra:0.5,cat:"Bebidas",icon:"🍺"},
+  {name:"Vino (litro)",agua:960,co2:1.79,ch4:2,tierra:1.0,cat:"Bebidas",icon:"🍷"},
+  {name:"Chocolate",agua:17196,co2:19.0,ch4:50,tierra:30.0,cat:"Extras",icon:"🍫"},
+  {name:"Azucar",agua:1782,co2:3.0,ch4:5,tierra:1.5,cat:"Extras",icon:"🍬"},
+  {name:"Aceite de oliva",agua:14726,co2:6.0,ch4:5,tierra:17.0,cat:"Extras",icon:"🫒"},
+  {name:"Aceite vegetal",agua:4000,co2:3.0,ch4:3,tierra:8.0,cat:"Extras",icon:"🛢"},
+  {name:"Nueces / Almendras",agua:9063,co2:3.5,ch4:5,tierra:12.0,cat:"Extras",icon:"🌰"}
+];
+var CATS=["Todos","Carnes","Mar","Lacteos","Granos","Verduras","Frutas","Bebidas","Extras"];
+var CATI={Todos:"🍽",Carnes:"🥩",Mar:"🐟",Lacteos:"🥛",Granos:"🌾",Verduras:"🥦",Frutas:"🍎",Bebidas:"☕",Extras:"🍫"};
+var PMULT={semana:1,mes:4.33,anno:52};
+var METRICS=[
+  {id:"agua",lbl:"Agua",unit:"litros",color:"#38bdf8",icon:"💧",desc:"Agua virtual"},
+  {id:"co2",lbl:"CO2eq",unit:"kg",color:"#4ade80",icon:"🌿",desc:"Gases invernadero"},
+  {id:"ch4",lbl:"Metano",unit:"g",color:"#fb923c",icon:"💨",desc:"Metano equiv."},
+  {id:"tierra",lbl:"Tierra",unit:"m2",color:"#a78bfa",icon:"🌍",desc:"Uso de suelo"}
+];
+var state={cat:"Todos",metric:"agua",resPeriod:"semana",items:[]};
+
+function fmt(n){return n>=1000?(n/1000).toFixed(1)+"k":n.toFixed(1);}
+function show(id){document.getElementById(id).classList.remove("hidden");}
+function hide(id){document.getElementById(id).classList.add("hidden");}
+
+function render(){
+  var has=state.items.length>0;
+  // cat chips
+  document.getElementById("cat-chips").innerHTML=CATS.map(function(c){
+    return '<button class="chip'+(state.cat===c?" on-green":"")+'" onclick="setCat(\''+c+'\')">'+CATI[c]+" "+c+"</button>";
+  }).join("");
+  // product select
+  var filtered=DB.filter(function(d){return state.cat==="Todos"||d.cat===state.cat;});
+  document.getElementById("sel-product").innerHTML='<option value="">— Seleccionar —</option>'+
+    filtered.map(function(d){return '<option value="'+d.name+'">'+d.icon+" "+d.name+"</option>";}).join("");
+  // metric chips
+  document.getElementById("metric-chips").innerHTML=METRICS.map(function(m){
+    var s=state.metric===m.id?"background:"+m.color+";color:#0f1117":"";
+    return '<button class="chip" style="'+s+'" onclick="setMetric(\''+m.id+'\')">'+m.icon+" "+m.lbl+"</button>";
+  }).join("");
+  // period chips
+  document.getElementById("period-chips").innerHTML=["semana","mes","anno"].map(function(p){
+    return '<button class="chip'+(state.resPeriod===p?" on-blue":"")+'" onclick="setResPeriod(\''+p+'\')">'+(p==="anno"?"año":p)+"</button>";
+  }).join("");
+  // items
+  var met=METRICS.filter(function(m){return m.id===state.metric;})[0];
+  var rMult=PMULT[state.resPeriod];
+  var vals=state.items.map(function(i){return i[met.id]*rMult/i.mult;});
+  var maxV=vals.length?Math.max.apply(null,vals):1;
+  document.getElementById("list-title").textContent="Mi lista ("+state.items.length+")";
+  document.getElementById("items-list").innerHTML=state.items.map(function(item,idx){
+    var val=vals[idx];
+    var pct=maxV>0?(val/maxV)*100:0;
+    var pL=item.period==="anno"?"año":item.period;
+    var rL=state.resPeriod==="anno"?"año":state.resPeriod;
+    return '<div class="item">'+
+      '<div class="item-icon">'+item.icon+"</div>"+
+      '<div class="item-body">'+
+        '<div class="item-top"><span class="item-name">'+item.name+'</span>'+
+        '<span class="item-val" style="color:'+met.color+'">'+met.icon+" "+fmt(val)+" "+met.unit+"</span></div>"+
+        '<div class="item-sub">'+item.qty+" kg / "+pL+" → por "+rL+"</div>"+
+        '<div class="bar-bg"><div class="bar-fill" style="width:'+pct+"%;background:"+met.color+'"></div></div>'+
+      "</div>"+
+      '<button class="btn-del" onclick="removeItem('+item.id+')">✕</button>'+
+    "</div>";
+  }).join("");
+  // totals
+  var totals={agua:0,co2:0,ch4:0,tierra:0};
+  state.items.forEach(function(i){
+    METRICS.forEach(function(m){totals[m.id]+=i[m.id]*rMult/i.mult;});
+  });
+  var rL=state.resPeriod==="anno"?"año":state.resPeriod;
+  document.getElementById("totals-grid").innerHTML=METRICS.map(function(m){
+    var val=totals[m.id];
+    var big=val>=1000;
+    var dv=big?(val/1000).toFixed(1):val.toFixed(1);
+    var du=big?(m.unit==="litros"?"m³":m.unit==="g"?"kg":"k"+m.unit):m.unit;
+    return '<div class="total-card" style="background:linear-gradient(135deg,'+m.color+'18,'+m.color+'08);border:1px solid '+m.color+'30">'+
+      '<div class="total-icon">'+m.icon+"</div>"+
+      '<div class="total-val" style="color:'+m.color+'">'+dv+'<span class="total-unit">'+du+"</span></div>"+
+      '<div class="total-lbl">'+m.lbl+" / "+rL+"</div>"+
+      '<div class="total-desc">'+m.desc+"</div></div>";
+  }).join("");
+  // compare
+  var cmps=[
+    {icon:"🚿",val:totals.agua,div:200,unit:"L",ref:"duchas de 10 min"},
+    {icon:"✈",val:totals.co2,div:21,unit:"kg CO2",ref:"km en avion"},
+    {icon:"🐄",val:totals.ch4/1000,div:0.055,unit:"kg CH4",ref:"dias flatulencias vaca"},
+    {icon:"⚽",val:totals.tierra,div:7140,unit:"m2",ref:"canchas de futbol"}
+  ];
+  document.getElementById("cmp-grid").innerHTML=cmps.map(function(c){
+    return '<div class="cmp-card"><div class="cmp-icon">'+c.icon+"</div>"+
+      '<div class="cmp-val">'+(c.val/c.div).toFixed(1)+"x</div>"+
+      '<div class="cmp-ref">'+c.ref+"<br><span class=\"cmp-num\">"+c.val.toFixed(1)+" "+c.unit+" / "+rL+"</span></div></div>";
+  }).join("");
+  // show/hide
+  if(has){show("card-list");show("totals-grid");show("card-cmp");hide("empty-state");}
+  else{hide("card-list");hide("totals-grid");hide("card-cmp");show("empty-state");}
+}
+
+function setCat(c){state.cat=c;render();}
+function setMetric(m){state.metric=m;render();}
+function setResPeriod(p){state.resPeriod=p;render();}
+function removeItem(id){state.items=state.items.filter(function(i){return i.id!==id;});render();}
+
+document.getElementById("btn-add").onclick=addItem;
+document.getElementById("inp-qty").onkeydown=function(e){if(e.key==="Enter")addItem();};
+
+function addItem(){
+  var name=document.getElementById("sel-product").value;
+  var qty=parseFloat(document.getElementById("inp-qty").value);
+  var per=document.getElementById("sel-period").value;
+  if(!name||!qty||qty<=0)return;
+  var d=DB.filter(function(x){return x.name===name;})[0];
+  if(!d)return;
+  var mult=PMULT[per];
+  state.items.push({id:Date.now(),name:name,qty:qty,period:per,mult:mult,icon:d.icon,
+    agua:d.agua*qty*mult,co2:d.co2*qty*mult,ch4:d.ch4*qty*mult,tierra:d.tierra*qty*mult});
+  document.getElementById("inp-qty").value="";
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>
