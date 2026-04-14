@@ -1,10 +1,4 @@
-
-
-
-
-
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -38,9 +32,20 @@ h1 {
   padding: 20px;
   margin-bottom: 16px;
 }
+.card-green {
+  background: rgba(74,222,128,0.04);
+  border: 1px solid rgba(74,222,128,0.18);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
 .sec-title {
   font-size: 11px; color: #94a3b8; font-weight: 700;
   text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px;
+}
+.sec-title-green {
+  font-size: 11px; color: #4ade80; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
 .chip {
@@ -67,6 +72,18 @@ input[type=number] { width: 90px; }
   background: linear-gradient(135deg, #4ade80, #22c55e);
   color: #0f1117; font-weight: 700; font-size: 14px; font-family: inherit;
   margin-top: 10px; width: 100%;
+}
+.btn-calc {
+  padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #0f1117; font-weight: 700; font-size: 14px; font-family: inherit;
+  margin-top: 10px; width: 100%;
+}
+.btn-outline-blue {
+  padding: 9px 16px; border-radius: 10px; cursor: pointer;
+  background: rgba(56,189,248,0.1); color: #38bdf8;
+  border: 1px solid rgba(56,189,248,0.3); font-weight: 700;
+  font-size: 13px; font-family: inherit; margin-top: 8px; width: 100%;
 }
 .item {
   display: flex; align-items: center; gap: 10px;
@@ -106,13 +123,62 @@ input[type=number] { width: 90px; }
 .footer { text-align: center; font-size: 10px; color: #334155; margin-top: 6px; }
 .metric-row { display: flex; flex-wrap: wrap; gap: 6px; }
 .hidden { display: none; }
+.vs-row {
+  display: grid; grid-template-columns: 1fr 28px 1fr;
+  gap: 8px; align-items: center; margin-bottom: 10px;
+}
+.vs-mid { text-align: center; font-size: 16px; color: #64748b; font-weight: 700; padding-top: 18px; }
+.proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.proj-card {
+  border-radius: 12px; padding: 14px; text-align: center;
+  background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15);
+}
+.proj-period { font-size: 10px; color: #4ade80; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.proj-val { font-size: 18px; font-weight: 800; color: #e2e8f0; }
+.proj-saved { font-size: 10px; color: #4ade80; margin-top: 3px; font-weight: 600; }
+.proj-eqs { margin-top: 7px; }
+.proj-eq { font-size: 9px; color: #64748b; line-height: 1.7; }
+.proj-eq span { color: #a78bfa; font-weight: 700; }
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.ba-card { border-radius: 10px; padding: 12px; text-align: center; }
+.ba-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+.ba-val { font-size: 17px; font-weight: 800; }
+.insight-box {
+  background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 12px; padding: 14px; margin-top: 12px;
+  font-size: 12px; color: #c4b5fd; line-height: 1.6;
+}
+.semana-card {
+  background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.25);
+  border-radius: 12px; padding: 14px; margin-top: 12px; text-align: center;
+}
+.semana-label { font-size: 10px; color: #38bdf8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.semana-val { font-size: 26px; font-weight: 800; color: #38bdf8; }
+.semana-sub { font-size: 11px; color: #64748b; margin-top: 4px; }
+.cambio-tag {
+  display: flex; align-items: center; gap: 8px; justify-content: space-between;
+  background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.2);
+  border-radius: 10px; padding: 9px 12px; margin-bottom: 7px; font-size: 12px;
+}
+.cambio-tag-text { color: #a7f3d0; flex: 1; }
+.cambio-tag-del { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px; font-family: inherit; }
+.res-individual {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 16px; margin-top: 14px;
+}
+.res-individual-title { font-size: 12px; font-weight: 700; color: #e2e8f0; margin-bottom: 10px; }
+.total-banner {
+  background: linear-gradient(135deg, rgba(74,222,128,0.12), rgba(56,189,248,0.08));
+  border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 14px; padding: 16px; margin-top: 16px;
+}
 </style>
 </head>
 <body>
 <div style="max-width:820px;margin:0 auto">
 
   <div class="header">
-    <div style="font-size:44px;margin-bottom:8px">🌱</div>
+    <div style="font-size:44px;margin-bottom:8px">&#127807;</div>
     <h1>Huella Ambiental</h1>
     <p>Calcula el impacto ambiental de tu consumo alimentario</p>
   </div>
@@ -162,8 +228,60 @@ input[type=number] { width: 90px; }
     <div class="cmp-grid" id="cmp-grid"></div>
   </div>
 
+  <!-- SECCION Y SI CAMBIO -->
+  <div class="card-green hidden" id="card-cambio">
+    <div class="sec-title-green">&#128260; ¿Y si cambio esto?</div>
+    <p style="font-size:12px;color:#64748b;margin-bottom:14px">
+      Agrega uno o varios cambios y ve tu ahorro individual por cada uno y el total combinado.
+    </p>
+
+    <!-- Formulario para agregar cambio -->
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px;margin-bottom:12px">
+      <div class="vs-row">
+        <div>
+          <label>Alimento a cambiar</label>
+          <select id="cambio-from"></select>
+        </div>
+        <div class="vs-mid">&#8594;</div>
+        <div>
+          <label>Sustituir por</label>
+          <select id="cambio-to" onchange="toggleCambioQty()">
+            <option value="">Eliminar</option>
+          </select>
+        </div>
+      </div>
+      <div id="cambio-qty-row" class="hidden" style="margin-bottom:10px">
+        <label>Cantidad del sustituto (kg/sem)</label>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+          <input type="number" id="cambio-qty" min="0.1" step="0.1" placeholder="Ej: 10" style="width:100px">
+          <span style="font-size:11px;color:#475569">kg/sem — puede ser diferente al original</span>
+        </div>
+      </div>
+      <button class="btn-outline-blue" id="btn-agregar-cambio">+ Agregar este cambio a la lista</button>
+    </div>
+
+    <!-- Lista de cambios pendientes -->
+    <div id="cambios-lista"></div>
+
+    <!-- Selector de indicador -->
+    <div style="margin:14px 0 10px">
+      <label style="margin-bottom:8px;display:block">Indicador a analizar</label>
+      <div class="chips" id="cambio-metric-chips"></div>
+    </div>
+
+    <button class="btn-calc" id="btn-calcular">Calcular mi impacto personal</button>
+
+    <!-- Resultados -->
+    <div id="cambio-resultado" class="hidden">
+      <!-- Resultados por producto -->
+      <div id="resultados-individuales"></div>
+      <!-- Total combinado (solo si hay más de 1 cambio) -->
+      <div id="resultado-total" class="hidden"></div>
+    </div>
+  </div>
+
   <div class="empty" id="empty-state">
-    <div class="big">🍽️</div>
+    <div class="big">&#127869;</div>
     <p>Agrega alimentos para calcular tu huella ambiental</p>
     <small>Ejemplo: 3 kg de Pollo / semana · 1 kg de Res / semana</small>
   </div>
@@ -173,79 +291,146 @@ input[type=number] { width: 90px; }
 
 <script>
 var DB = [
-  {name:"Res / Ternera",agua:15415,co2:27.0,ch4:300,tierra:164,cat:"Carnes",icon:"🐄"},
-  {name:"Cordero / Borrego",agua:10412,co2:24.5,ch4:250,tierra:185,cat:"Carnes",icon:"🐑"},
-  {name:"Cerdo",agua:5988,co2:12.1,ch4:50,tierra:11,cat:"Carnes",icon:"🐷"},
-  {name:"Pollo",agua:4325,co2:6.9,ch4:20,tierra:7.1,cat:"Carnes",icon:"🐔"},
-  {name:"Pavo",agua:4000,co2:6.5,ch4:18,tierra:7.0,cat:"Carnes",icon:"🦃"},
-  {name:"Salmon / Pescado",agua:2500,co2:6.1,ch4:5,tierra:3.7,cat:"Mar",icon:"🐟"},
-  {name:"Atun enlatado",agua:1900,co2:6.1,ch4:4,tierra:3.0,cat:"Mar",icon:"🐠"},
-  {name:"Camaron",agua:3600,co2:12.0,ch4:10,tierra:15.0,cat:"Mar",icon:"🦐"},
-  {name:"Queso",agua:3178,co2:13.5,ch4:120,tierra:10.2,cat:"Lacteos",icon:"🧀"},
-  {name:"Leche (litros)",agua:1020,co2:3.2,ch4:30,tierra:1.8,cat:"Lacteos",icon:"🥛"},
-  {name:"Yogur",agua:900,co2:2.2,ch4:22,tierra:1.5,cat:"Lacteos",icon:"🍶"},
-  {name:"Huevo",agua:3265,co2:4.5,ch4:15,tierra:5.7,cat:"Lacteos",icon:"🥚"},
-  {name:"Mantequilla",agua:5553,co2:11.9,ch4:100,tierra:9.0,cat:"Lacteos",icon:"🧈"},
-  {name:"Arroz",agua:2497,co2:4.0,ch4:70,tierra:2.8,cat:"Granos",icon:"🍚"},
-  {name:"Trigo / Pan",agua:1827,co2:1.6,ch4:2,tierra:3.6,cat:"Granos",icon:"🍞"},
-  {name:"Maiz",agua:1222,co2:1.7,ch4:2,tierra:2.0,cat:"Granos",icon:"🌽"},
-  {name:"Avena",agua:1788,co2:2.5,ch4:3,tierra:7.6,cat:"Granos",icon:"🌾"},
-  {name:"Frijoles",agua:4055,co2:2.0,ch4:5,tierra:8.9,cat:"Granos",icon:"🫘"},
-  {name:"Lentejas",agua:1250,co2:1.6,ch4:4,tierra:3.4,cat:"Granos",icon:"🌱"},
-  {name:"Soya / Tofu",agua:2145,co2:2.2,ch4:3,tierra:2.2,cat:"Granos",icon:"🫘"},
-  {name:"Jitomate",agua:214,co2:1.4,ch4:1,tierra:0.2,cat:"Verduras",icon:"🍅"},
-  {name:"Aguacate",agua:1981,co2:2.5,ch4:2,tierra:0.8,cat:"Verduras",icon:"🥑"},
-  {name:"Papa",agua:287,co2:0.5,ch4:1,tierra:0.6,cat:"Verduras",icon:"🥔"},
-  {name:"Zanahoria",agua:131,co2:0.4,ch4:0.5,tierra:0.3,cat:"Verduras",icon:"🥕"},
-  {name:"Manzana",agua:822,co2:0.4,ch4:0.5,tierra:0.5,cat:"Frutas",icon:"🍎"},
-  {name:"Naranja",agua:560,co2:0.4,ch4:0.5,tierra:0.3,cat:"Frutas",icon:"🍊"},
-  {name:"Platano",agua:790,co2:0.7,ch4:1,tierra:0.6,cat:"Frutas",icon:"🍌"},
-  {name:"Fresas",agua:348,co2:0.4,ch4:0.5,tierra:0.2,cat:"Frutas",icon:"🍓"},
-  {name:"Cafe (taza)",agua:140,co2:0.28,ch4:0.5,tierra:0.15,cat:"Bebidas",icon:"☕"},
-  {name:"Te (taza)",agua:34,co2:0.03,ch4:0.1,tierra:0.02,cat:"Bebidas",icon:"🍵"},
-  {name:"Cerveza (litro)",agua:300,co2:0.63,ch4:1,tierra:0.5,cat:"Bebidas",icon:"🍺"},
-  {name:"Vino (litro)",agua:960,co2:1.79,ch4:2,tierra:1.0,cat:"Bebidas",icon:"🍷"},
-  {name:"Chocolate",agua:17196,co2:19.0,ch4:50,tierra:30.0,cat:"Extras",icon:"🍫"},
-  {name:"Azucar",agua:1782,co2:3.0,ch4:5,tierra:1.5,cat:"Extras",icon:"🍬"},
-  {name:"Aceite de oliva",agua:14726,co2:6.0,ch4:5,tierra:17.0,cat:"Extras",icon:"🫒"},
-  {name:"Aceite vegetal",agua:4000,co2:3.0,ch4:3,tierra:8.0,cat:"Extras",icon:"🛢"},
-  {name:"Nueces / Almendras",agua:9063,co2:3.5,ch4:5,tierra:12.0,cat:"Extras",icon:"🌰"}
+  {name:"Res / Ternera",agua:15415,co2:27.0,ch4:300,tierra:164,cat:"Carnes",icon:"&#128004;"},
+  {name:"Cordero / Borrego",agua:10412,co2:24.5,ch4:250,tierra:185,cat:"Carnes",icon:"&#128017;"},
+  {name:"Cerdo",agua:5988,co2:12.1,ch4:50,tierra:11,cat:"Carnes",icon:"&#128055;"},
+  {name:"Pollo",agua:4325,co2:6.9,ch4:20,tierra:7.1,cat:"Carnes",icon:"&#128020;"},
+  {name:"Pavo",agua:4000,co2:6.5,ch4:18,tierra:7.0,cat:"Carnes",icon:"&#129411;"},
+  {name:"Salmon / Pescado",agua:2500,co2:6.1,ch4:5,tierra:3.7,cat:"Mar",icon:"&#128031;"},
+  {name:"Atun enlatado",agua:1900,co2:6.1,ch4:4,tierra:3.0,cat:"Mar",icon:"&#128032;"},
+  {name:"Camaron",agua:3600,co2:12.0,ch4:10,tierra:15.0,cat:"Mar",icon:"&#129438;"},
+  {name:"Queso",agua:3178,co2:13.5,ch4:120,tierra:10.2,cat:"Lacteos",icon:"&#129472;"},
+  {name:"Leche (litros)",agua:1020,co2:3.2,ch4:30,tierra:1.8,cat:"Lacteos",icon:"&#129371;"},
+  {name:"Yogur",agua:900,co2:2.2,ch4:22,tierra:1.5,cat:"Lacteos",icon:"&#127862;"},
+  {name:"Huevo",agua:3265,co2:4.5,ch4:15,tierra:5.7,cat:"Lacteos",icon:"&#129370;"},
+  {name:"Mantequilla",agua:5553,co2:11.9,ch4:100,tierra:9.0,cat:"Lacteos",icon:"&#129480;"},
+  {name:"Arroz",agua:2497,co2:4.0,ch4:70,tierra:2.8,cat:"Granos",icon:"&#127834;"},
+  {name:"Trigo / Pan",agua:1827,co2:1.6,ch4:2,tierra:3.6,cat:"Granos",icon:"&#127838;"},
+  {name:"Maiz",agua:1222,co2:1.7,ch4:2,tierra:2.0,cat:"Granos",icon:"&#127805;"},
+  {name:"Avena",agua:1788,co2:2.5,ch4:3,tierra:7.6,cat:"Granos",icon:"&#127807;"},
+  {name:"Frijoles",agua:4055,co2:2.0,ch4:5,tierra:8.9,cat:"Granos",icon:"&#129752;"},
+  {name:"Lentejas",agua:1250,co2:1.6,ch4:4,tierra:3.4,cat:"Granos",icon:"&#127807;"},
+  {name:"Soya / Tofu",agua:2145,co2:2.2,ch4:3,tierra:2.2,cat:"Granos",icon:"&#129752;"},
+  {name:"Jitomate",agua:214,co2:1.4,ch4:1,tierra:0.2,cat:"Verduras",icon:"&#127813;"},
+  {name:"Aguacate",agua:1981,co2:2.5,ch4:2,tierra:0.8,cat:"Verduras",icon:"&#129361;"},
+  {name:"Papa",agua:287,co2:0.5,ch4:1,tierra:0.6,cat:"Verduras",icon:"&#129364;"},
+  {name:"Zanahoria",agua:131,co2:0.4,ch4:0.5,tierra:0.3,cat:"Verduras",icon:"&#129365;"},
+  {name:"Manzana",agua:822,co2:0.4,ch4:0.5,tierra:0.5,cat:"Frutas",icon:"&#127822;"},
+  {name:"Naranja",agua:560,co2:0.4,ch4:0.5,tierra:0.3,cat:"Frutas",icon:"&#127818;"},
+  {name:"Platano",agua:790,co2:0.7,ch4:1,tierra:0.6,cat:"Frutas",icon:"&#127820;"},
+  {name:"Fresas",agua:348,co2:0.4,ch4:0.5,tierra:0.2,cat:"Frutas",icon:"&#127827;"},
+  {name:"Cafe (taza)",agua:140,co2:0.28,ch4:0.5,tierra:0.15,cat:"Bebidas",icon:"&#9749;"},
+  {name:"Te (taza)",agua:34,co2:0.03,ch4:0.1,tierra:0.02,cat:"Bebidas",icon:"&#127861;"},
+  {name:"Cerveza (litro)",agua:300,co2:0.63,ch4:1,tierra:0.5,cat:"Bebidas",icon:"&#127866;"},
+  {name:"Vino (litro)",agua:960,co2:1.79,ch4:2,tierra:1.0,cat:"Bebidas",icon:"&#127863;"},
+  {name:"Chocolate",agua:17196,co2:19.0,ch4:50,tierra:30.0,cat:"Extras",icon:"&#127851;"},
+  {name:"Azucar",agua:1782,co2:3.0,ch4:5,tierra:1.5,cat:"Extras",icon:"&#127852;"},
+  {name:"Aceite de oliva",agua:14726,co2:6.0,ch4:5,tierra:17.0,cat:"Extras",icon:"&#129386;"},
+  {name:"Aceite vegetal",agua:4000,co2:3.0,ch4:3,tierra:8.0,cat:"Extras",icon:"&#128758;"},
+  {name:"Nueces / Almendras",agua:9063,co2:3.5,ch4:5,tierra:12.0,cat:"Extras",icon:"&#127792;"},
+  {name:"Leche de avena (litro)",agua:48,co2:0.9,ch4:0.5,tierra:0.76,cat:"Extras",icon:"&#127807;"},
+  {name:"Leche de soya (litro)",agua:28,co2:0.98,ch4:0.5,tierra:0.66,cat:"Extras",icon:"&#127807;"},
+  {name:"Aceite de coco",agua:2500,co2:2.9,ch4:2,tierra:2.8,cat:"Extras",icon:"&#127796;"},
+  {name:"Garbanzos",agua:4263,co2:0.8,ch4:4,tierra:7.3,cat:"Granos",icon:"&#129752;"},
+  {name:"Chícharos secos",agua:900,co2:0.9,ch4:3,tierra:3.4,cat:"Granos",icon:"&#129758;"},
+  {name:"Cacahuates",agua:2782,co2:2.5,ch4:3,tierra:3.5,cat:"Granos",icon:"&#129362;"},
+  {name:"Tortilla de maíz",agua:1400,co2:1.0,ch4:2,tierra:2.1,cat:"Granos",icon:"&#127760;"},
+  {name:"Pasta",agua:1849,co2:1.4,ch4:2,tierra:2.9,cat:"Granos",icon:"&#127837;"},
+  {name:"Quinoa",agua:3545,co2:2.0,ch4:3,tierra:5.5,cat:"Granos",icon:"&#127806;"},
+  {name:"Calabaza",agua:240,co2:0.3,ch4:0.5,tierra:0.3,cat:"Verduras",icon:"&#127874;"},
+  {name:"Espinaca",agua:292,co2:0.3,ch4:0.3,tierra:0.2,cat:"Verduras",icon:"&#129001;"},
+  {name:"Brocoli",agua:280,co2:0.4,ch4:0.3,tierra:0.2,cat:"Verduras",icon:"&#129382;"},
+  {name:"Cebolla",agua:272,co2:0.3,ch4:0.3,tierra:0.3,cat:"Verduras",icon:"&#129365;"},
+  {name:"Chile / Pimiento",agua:295,co2:0.3,ch4:0.3,tierra:0.2,cat:"Verduras",icon:"&#127798;"},
+  {name:"Lechuga",agua:130,co2:0.3,ch4:0.2,tierra:0.1,cat:"Verduras",icon:"&#129001;"},
+  {name:"Pepino",agua:240,co2:0.3,ch4:0.2,tierra:0.2,cat:"Verduras",icon:"&#129362;"},
+  {name:"Mango",agua:686,co2:0.5,ch4:0.5,tierra:0.5,cat:"Frutas",icon:"&#129389;"},
+  {name:"Sandia",agua:235,co2:0.3,ch4:0.3,tierra:0.2,cat:"Frutas",icon:"&#127817;"},
+  {name:"Uvas",agua:608,co2:0.7,ch4:0.5,tierra:0.7,cat:"Frutas",icon:"&#127815;"},
+  {name:"Pera",agua:922,co2:0.4,ch4:0.4,tierra:0.5,cat:"Frutas",icon:"&#127824;"},
+  {name:"Durazno",agua:910,co2:0.4,ch4:0.4,tierra:0.4,cat:"Frutas",icon:"&#127825;"},
+  {name:"Limon",agua:560,co2:0.4,ch4:0.3,tierra:0.3,cat:"Frutas",icon:"&#129389;"}
 ];
+
 var CATS=["Todos","Carnes","Mar","Lacteos","Granos","Verduras","Frutas","Bebidas","Extras"];
-var CATI={Todos:"🍽",Carnes:"🥩",Mar:"🐟",Lacteos:"🥛",Granos:"🌾",Verduras:"🥦",Frutas:"🍎",Bebidas:"☕",Extras:"🍫"};
+var CATI={Todos:"&#127869;",Carnes:"&#129361;",Mar:"&#128031;",Lacteos:"&#129371;",Granos:"&#127806;",Verduras:"&#129382;",Frutas:"&#127822;",Bebidas:"&#9749;",Extras:"&#127851;"};
 var PMULT={semana:1,mes:4.33,anno:52};
 var METRICS=[
-  {id:"agua",lbl:"Agua",unit:"litros",color:"#38bdf8",icon:"💧",desc:"Agua virtual"},
-  {id:"co2",lbl:"CO2eq",unit:"kg",color:"#4ade80",icon:"🌿",desc:"Gases invernadero"},
-  {id:"ch4",lbl:"Metano",unit:"g",color:"#fb923c",icon:"💨",desc:"Metano equiv."},
-  {id:"tierra",lbl:"Tierra",unit:"m2",color:"#a78bfa",icon:"🌍",desc:"Uso de suelo"}
+  {id:"agua",lbl:"Agua",unit:"L",color:"#38bdf8",icon:"&#128167;",desc:"Agua virtual"},
+  {id:"co2",lbl:"CO&#8322;eq",unit:"kg",color:"#4ade80",icon:"&#127807;",desc:"Gases invernadero"},
+  {id:"ch4",lbl:"CH&#8324;",unit:"g",color:"#fb923c",icon:"&#128168;",desc:"Metano equiv."},
+  {id:"tierra",lbl:"Tierra",unit:"m\u00b2",color:"#a78bfa",icon:"&#127757;",desc:"Uso de suelo"}
 ];
-var state={cat:"Todos",metric:"agua",resPeriod:"semana",items:[]};
+var PROYECCIONES=[
+  {id:"sem",label:"Esta semana",semanas:1},
+  {id:"1anno",label:"1 año",semanas:52},
+  {id:"prepa",label:"Prepa (3 años)",semanas:156},
+  {id:"5anno",label:"5 años",semanas:260},
+  {id:"10anno",label:"10 años",semanas:520}
+];
+var EQUIV={
+  agua:[
+    {icon:"&#128703;",ref:"duchas de 10 min",div:200},
+    {icon:"&#127946;",ref:"albercas olimpicas",div:2500000},
+    {icon:"&#129404;",ref:"botellas de 1.5L",div:1.5}
+  ],
+  co2:[
+    {icon:"&#9992;",ref:"km en avion",div:0.21},
+    {icon:"&#128664;",ref:"km en auto",div:0.21},
+    {icon:"&#127795;",ref:"arboles que absorben en 1 año",div:21}
+  ],
+  ch4:[
+    {icon:"&#128004;",ref:"dias flatulencias de vaca",div:55},
+    {icon:"&#128168;",ref:"globos de metano puro",div:0.7}
+  ],
+  tierra:[
+    {icon:"&#9917;",ref:"canchas de futbol",div:7140},
+    {icon:"&#127968;",ref:"departamentos de 60m2",div:60},
+    {icon:"&#127795;",ref:"arboles adultos",div:25}
+  ]
+};
+
+var state={cat:"Todos",metric:"agua",resPeriod:"semana",items:[],cambioMetric:"co2",cambios:[]};
 
 function fmt(n){return n>=1000?(n/1000).toFixed(1)+"k":n.toFixed(1);}
+function fmtFull(n,unit){
+  if(unit==="kg"){
+    if(n>=1000) return (n/1000).toFixed(2)+" t";
+    return n.toFixed(1)+" kg";
+  }
+  if(unit==="L"){
+    if(n>=1000000) return (n/1000000).toFixed(2)+" millones de L";
+    return Math.round(n).toLocaleString("es-MX")+" L";
+  }
+  if(unit==="g"){
+    if(n>=1000000) return (n/1000000).toFixed(2)+" t";
+    if(n>=1000) return (n/1000).toFixed(1)+" kg";
+    return n.toFixed(1)+" g";
+  }
+  if(unit==="m\u00b2"){
+    if(n>=10000) return (n/10000).toFixed(2)+" ha";
+    return n.toFixed(1)+" m\u00b2";
+  }
+  return n.toFixed(1)+" "+unit;
+}
 function show(id){document.getElementById(id).classList.remove("hidden");}
 function hide(id){document.getElementById(id).classList.add("hidden");}
 
 function render(){
   var has=state.items.length>0;
-  // cat chips
   document.getElementById("cat-chips").innerHTML=CATS.map(function(c){
     return '<button class="chip'+(state.cat===c?" on-green":"")+'" onclick="setCat(\''+c+'\')">'+CATI[c]+" "+c+"</button>";
   }).join("");
-  // product select
   var filtered=DB.filter(function(d){return state.cat==="Todos"||d.cat===state.cat;});
   document.getElementById("sel-product").innerHTML='<option value="">— Seleccionar —</option>'+
-    filtered.map(function(d){return '<option value="'+d.name+'">'+d.icon+" "+d.name+"</option>";}).join("");
-  // metric chips
+    filtered.map(function(d){return '<option value="'+d.name+'">'+d.name+"</option>";}).join("");
   document.getElementById("metric-chips").innerHTML=METRICS.map(function(m){
     var s=state.metric===m.id?"background:"+m.color+";color:#0f1117":"";
     return '<button class="chip" style="'+s+'" onclick="setMetric(\''+m.id+'\')">'+m.icon+" "+m.lbl+"</button>";
   }).join("");
-  // period chips
   document.getElementById("period-chips").innerHTML=["semana","mes","anno"].map(function(p){
     return '<button class="chip'+(state.resPeriod===p?" on-blue":"")+'" onclick="setResPeriod(\''+p+'\')">'+(p==="anno"?"año":p)+"</button>";
   }).join("");
-  // items
   var met=METRICS.filter(function(m){return m.id===state.metric;})[0];
   var rMult=PMULT[state.resPeriod];
   var vals=state.items.map(function(i){return i[met.id]*rMult/i.mult;});
@@ -261,53 +446,232 @@ function render(){
       '<div class="item-body">'+
         '<div class="item-top"><span class="item-name">'+item.name+'</span>'+
         '<span class="item-val" style="color:'+met.color+'">'+met.icon+" "+fmt(val)+" "+met.unit+"</span></div>"+
-        '<div class="item-sub">'+item.qty+" kg / "+pL+" → por "+rL+"</div>"+
+        '<div class="item-sub">'+item.qty+" kg/"+pL+" — ver por "+rL+"</div>"+
         '<div class="bar-bg"><div class="bar-fill" style="width:'+pct+"%;background:"+met.color+'"></div></div>'+
       "</div>"+
-      '<button class="btn-del" onclick="removeItem('+item.id+')">✕</button>'+
+      '<button class="btn-del" onclick="removeItem('+item.id+')">&#10005;</button>'+
     "</div>";
   }).join("");
-  // totals
   var totals={agua:0,co2:0,ch4:0,tierra:0};
-  state.items.forEach(function(i){
-    METRICS.forEach(function(m){totals[m.id]+=i[m.id]*rMult/i.mult;});
-  });
+  state.items.forEach(function(i){METRICS.forEach(function(m){totals[m.id]+=i[m.id]*rMult/i.mult;});});
   var rL=state.resPeriod==="anno"?"año":state.resPeriod;
   document.getElementById("totals-grid").innerHTML=METRICS.map(function(m){
     var val=totals[m.id];
     var big=val>=1000;
     var dv=big?(val/1000).toFixed(1):val.toFixed(1);
-    var du=big?(m.unit==="litros"?"m³":m.unit==="g"?"kg":"k"+m.unit):m.unit;
+    var du=m.unit==="L"?"L":(big?(m.unit==="g"?"kg":"k"+m.unit):m.unit);
+    if(m.unit==="L"){ dv=val>=1000000?(val/1000000).toFixed(2)+" millones de":Math.round(val).toLocaleString("es-MX"); }
     return '<div class="total-card" style="background:linear-gradient(135deg,'+m.color+'18,'+m.color+'08);border:1px solid '+m.color+'30">'+
       '<div class="total-icon">'+m.icon+"</div>"+
       '<div class="total-val" style="color:'+m.color+'">'+dv+'<span class="total-unit">'+du+"</span></div>"+
       '<div class="total-lbl">'+m.lbl+" / "+rL+"</div>"+
       '<div class="total-desc">'+m.desc+"</div></div>";
   }).join("");
-  // compare
   var cmps=[
-    {icon:"🚿",val:totals.agua,div:200,unit:"L",ref:"duchas de 10 min"},
-    {icon:"✈",val:totals.co2,div:21,unit:"kg CO2",ref:"km en avion"},
-    {icon:"🐄",val:totals.ch4/1000,div:0.055,unit:"kg CH4",ref:"dias flatulencias vaca"},
-    {icon:"⚽",val:totals.tierra,div:7140,unit:"m2",ref:"canchas de futbol"}
+    {icon:"&#128703;",val:totals.agua,div:200,unit:"L",ref:"duchas 10 min"},
+    {icon:"&#9992;",val:totals.co2,div:21,unit:"kg CO2",ref:"km en avion"},
+    {icon:"&#128004;",val:totals.ch4/1000,div:0.055,unit:"kg CH4",ref:"dias flatulencias vaca"},
+    {icon:"&#9917;",val:totals.tierra,div:7140,unit:"m2",ref:"canchas de futbol"}
   ];
   document.getElementById("cmp-grid").innerHTML=cmps.map(function(c){
     return '<div class="cmp-card"><div class="cmp-icon">'+c.icon+"</div>"+
       '<div class="cmp-val">'+(c.val/c.div).toFixed(1)+"x</div>"+
       '<div class="cmp-ref">'+c.ref+"<br><span class=\"cmp-num\">"+c.val.toFixed(1)+" "+c.unit+" / "+rL+"</span></div></div>";
   }).join("");
-  // show/hide
-  if(has){show("card-list");show("totals-grid");show("card-cmp");hide("empty-state");}
-  else{hide("card-list");hide("totals-grid");hide("card-cmp");show("empty-state");}
+  renderCambioSelects();
+  renderCambioMetricChips();
+  renderCambiosList();
+  if(has){show("card-list");show("totals-grid");show("card-cmp");show("card-cambio");hide("empty-state");}
+  else{hide("card-list");hide("totals-grid");hide("card-cmp");hide("card-cambio");show("empty-state");hide("cambio-resultado");}
+}
+
+function renderCambioSelects(){
+  var fromSel=document.getElementById("cambio-from");
+  var toSel=document.getElementById("cambio-to");
+  var prevFrom=fromSel.value;
+  fromSel.innerHTML=state.items.map(function(i){
+    return '<option value="'+i.id+'">'+i.name+" ("+i.qty+"kg/"+i.period+")</option>";
+  }).join("");
+  if(prevFrom) fromSel.value=prevFrom;
+  toSel.innerHTML='<option value="">Eliminar</option>'+
+    DB.map(function(d){return '<option value="'+d.name+'">'+d.name+"</option>";}).join("");
+}
+
+function renderCambioMetricChips(){
+  document.getElementById("cambio-metric-chips").innerHTML=METRICS.map(function(m){
+    var s=state.cambioMetric===m.id?"background:"+m.color+";color:#0f1117":"";
+    return '<button class="chip" style="'+s+'" onclick="setCambioMetric(\''+m.id+'\')">'+m.icon+" "+m.lbl+"</button>";
+  }).join("");
+}
+
+function renderCambiosList(){
+  var el=document.getElementById("cambios-lista");
+  if(state.cambios.length===0){el.innerHTML="";return;}
+  el.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:8px">Cambios a calcular ('+state.cambios.length+'):</div>'+
+    state.cambios.map(function(c,i){
+      var toTxt=c.toName?(c.toQty+" kg de "+c.toName):"eliminar";
+      return '<div class="cambio-tag">'+
+        '<span class="cambio-tag-text">'+c.fromName+" ("+c.fromQty+"kg/sem) &#8594; "+toTxt+"</span>"+
+        '<button class="cambio-tag-del" onclick="quitarCambio('+i+')">&#10005;</button>'+
+      "</div>";
+    }).join("");
+}
+
+function toggleCambioQty(){
+  var toName=document.getElementById("cambio-to").value;
+  if(toName){show("cambio-qty-row");}else{hide("cambio-qty-row");}
+  hide("cambio-resultado");
+}
+
+function quitarCambio(idx){
+  state.cambios.splice(idx,1);
+  renderCambiosList();
+  hide("cambio-resultado");
+}
+
+function setCambioMetric(m){state.cambioMetric=m;hide("cambio-resultado");renderCambioMetricChips();}
+
+function agregarCambio(){
+  var fromId=parseInt(document.getElementById("cambio-from").value);
+  var toName=document.getElementById("cambio-to").value;
+  var fromItem=state.items.filter(function(i){return i.id===fromId;})[0];
+  if(!fromItem)return;
+  var customQty=parseFloat(document.getElementById("cambio-qty").value);
+  var toQty=toName?((!isNaN(customQty)&&customQty>0)?customQty:fromItem.qty):0;
+  // evitar duplicados del mismo fromId
+  state.cambios=state.cambios.filter(function(c){return c.fromId!==fromId;});
+  state.cambios.push({fromId:fromId,fromName:fromItem.name,fromQty:fromItem.qty/fromItem.mult,toName:toName,toQty:toQty});
+  document.getElementById("cambio-qty").value="";
+  hide("cambio-qty-row");
+  document.getElementById("cambio-to").value="";
+  hide("cambio-resultado");
+  renderCambiosList();
+}
+
+function calcularCambio(){
+  if(state.cambios.length===0){alert("Agrega al menos un cambio primero.");return;}
+  var metId=state.cambioMetric;
+  var met=METRICS.filter(function(m){return m.id===metId;})[0];
+  var totalAhorro=0;
+  var indHTML="";
+
+  state.cambios.forEach(function(c){
+    var fromItem=state.items.filter(function(i){return i.id===c.fromId;})[0];
+    if(!fromItem)return;
+    var origSem=fromItem[metId]/fromItem.mult;
+    var nuevaSem=0;
+    if(c.toName){
+      var toItem=DB.filter(function(d){return d.name===c.toName;})[0];
+      if(toItem) nuevaSem=toItem[metId]*c.toQty;
+    }
+    var ahorro=origSem-nuevaSem;
+    totalAhorro+=ahorro;
+    var toTxt=c.toName?("&#8594; "+c.toQty+" kg de "+c.toName):"&#8594; eliminar";
+    var eqs=EQUIV[metId];
+
+    // tarjeta semanal individual con equivalencias
+    var semEqsH=eqs.map(function(e){
+      var n=Math.abs(ahorro)/e.div;
+      return '<div class="proj-eq">'+e.icon+' <span>'+n.toFixed(1)+'</span> '+e.ref+'</div>';
+    }).join("");
+    var semCard='<div class="semana-card">'+
+      '<div class="semana-label">&#128336; Ahorro esta semana</div>'+
+      '<div class="semana-val">'+fmtFull(Math.abs(ahorro),met.unit)+'</div>'+
+      '<div class="semana-sub">'+(ahorro>=0?"menos de "+met.lbl+" esta semana":"mas de "+met.lbl+" esta semana")+'</div>'+
+      '<div style="margin-top:8px;text-align:left">'+semEqsH+'</div>'+
+    '</div>';
+
+    // proyecciones individuales (sin semana, esa ya aparece arriba)
+    var projH=PROYECCIONES.filter(function(p){return p.id!=="sem";}).map(function(p){
+      var tot=ahorro*p.semanas;
+      var eqsH=eqs.map(function(e){
+        return '<div class="proj-eq">'+e.icon+' <span>'+(tot/e.div).toFixed(1)+'</span> '+e.ref+'</div>';
+      }).join("");
+      return '<div class="proj-card">'+
+        '<div class="proj-period">'+p.label+'</div>'+
+        '<div class="proj-val">'+fmtFull(Math.abs(tot),met.unit)+'</div>'+
+        '<div class="proj-saved">'+(ahorro>=0?"ahorradas":"adicionales")+'</div>'+
+        '<div class="proj-eqs">'+eqsH+'</div></div>';
+    }).join("");
+
+    indHTML+='<div class="res-individual">'+
+      '<div class="res-individual-title">'+fromItem.icon+" "+c.fromName+" "+toTxt+'</div>'+
+      '<div class="before-after">'+
+        '<div class="ba-card" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2)">'+
+          '<div class="ba-label" style="color:#f87171">Ahora/sem</div>'+
+          '<div class="ba-val" style="color:#f87171">'+fmtFull(origSem,met.unit)+'</div></div>'+
+        '<div class="ba-card" style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2)">'+
+          '<div class="ba-label" style="color:#4ade80">Con cambio/sem</div>'+
+          '<div class="ba-val" style="color:#4ade80">'+fmtFull(nuevaSem,met.unit)+'</div></div>'+
+      '</div>'+
+      semCard+
+      '<div class="proj-grid" style="margin-top:10px">'+projH+'</div>'+
+    '</div>';
+  });
+
+  document.getElementById("resultados-individuales").innerHTML=
+    '<div style="font-size:12px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:16px;margin-bottom:4px">Resultado por cada cambio</div>'+
+    indHTML;
+
+  // Total combinado solo si hay más de 1
+  var totalEl=document.getElementById("resultado-total");
+  if(state.cambios.length>1){
+    var eqs=EQUIV[metId];
+    var semTotalEqsH=eqs.map(function(e){
+      var n=Math.abs(totalAhorro)/e.div;
+      return '<div class="proj-eq">'+e.icon+' <span>'+n.toFixed(1)+'</span> '+e.ref+'</div>';
+    }).join("");
+    var semTotalCard='<div class="semana-card">'+
+      '<div class="semana-label">&#9889; Ahorro TOTAL esta semana</div>'+
+      '<div class="semana-val">'+fmtFull(Math.abs(totalAhorro),met.unit)+'</div>'+
+      '<div class="semana-sub">'+(totalAhorro>=0?"menos de "+met.lbl+" esta semana":"mas de "+met.lbl+" esta semana")+'</div>'+
+      '<div style="margin-top:8px;text-align:left">'+semTotalEqsH+'</div>'+
+    '</div>';
+    var totalProjH=PROYECCIONES.filter(function(p){return p.id!=="sem";}).map(function(p){
+      var tot=totalAhorro*p.semanas;
+      var eqsH=eqs.map(function(e){
+        return '<div class="proj-eq">'+e.icon+' <span>'+(tot/e.div).toFixed(1)+'</span> '+e.ref+'</div>';
+      }).join("");
+      return '<div class="proj-card">'+
+        '<div class="proj-period">'+p.label+'</div>'+
+        '<div class="proj-val">'+fmtFull(Math.abs(tot),met.unit)+'</div>'+
+        '<div class="proj-saved">'+(totalAhorro>=0?"ahorradas":"adicionales")+'</div>'+
+        '<div class="proj-eqs">'+eqsH+'</div></div>';
+    }).join("");
+    var pct=0;
+    var origTotal=state.cambios.reduce(function(a,c){
+      var fi=state.items.filter(function(i){return i.id===c.fromId;})[0];
+      return a+(fi?fi[metId]/fi.mult:0);
+    },0);
+    if(origTotal>0) pct=Math.round((totalAhorro/origTotal)*100);
+    totalEl.innerHTML='<div class="total-banner">'+
+      '<div style="font-size:12px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">&#9889; Total combinado de todos tus cambios</div>'+
+      semTotalCard+
+      '<div class="proj-grid" style="margin-top:10px">'+totalProjH+'</div>'+
+      '<div class="insight-box">Solo tú, sin que nadie más cambie nada, con estos <strong>'+state.cambios.length+' cambios combinados</strong> ahorrarías <strong>'+fmtFull(totalAhorro*520,met.unit)+'</strong> de '+met.lbl+' en 10 años. Eso representa un <strong>'+pct+'%</strong> menos en este indicador comparado con tu consumo actual.</div>'+
+    '</div>';
+    show("resultado-total");
+  } else {
+    totalEl.innerHTML="";
+    hide("resultado-total");
+  }
+
+  show("cambio-resultado");
 }
 
 function setCat(c){state.cat=c;render();}
 function setMetric(m){state.metric=m;render();}
 function setResPeriod(p){state.resPeriod=p;render();}
-function removeItem(id){state.items=state.items.filter(function(i){return i.id!==id;});render();}
+function removeItem(id){
+  state.items=state.items.filter(function(i){return i.id!==id;});
+  state.cambios=state.cambios.filter(function(c){return c.fromId!==id;});
+  hide("cambio-resultado");render();
+}
 
 document.getElementById("btn-add").onclick=addItem;
 document.getElementById("inp-qty").onkeydown=function(e){if(e.key==="Enter")addItem();};
+document.getElementById("btn-agregar-cambio").onclick=agregarCambio;
+document.getElementById("btn-calcular").onclick=calcularCambio;
 
 function addItem(){
   var name=document.getElementById("sel-product").value;
@@ -325,6 +689,5 @@ function addItem(){
 
 render();
 </script>
-
 </body>
 </html>
