@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -229,55 +230,59 @@ input[type=number] { width: 90px; }
   </div>
 
   <!-- SECCION Y SI CAMBIO -->
+
   <div class="card-green hidden" id="card-cambio">
     <div class="sec-title-green">&#128260; ¿Y si cambio esto?</div>
     <p style="font-size:12px;color:#64748b;margin-bottom:14px">
       Agrega uno o varios cambios y ve tu ahorro individual por cada uno y el total combinado.
     </p>
 
-    <!-- Formulario para agregar cambio -->
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px;margin-bottom:12px">
-      <div class="vs-row">
-        <div>
-          <label>Alimento a cambiar</label>
-          <select id="cambio-from"></select>
-        </div>
-        <div class="vs-mid">&#8594;</div>
-        <div>
-          <label>Sustituir por</label>
-          <select id="cambio-to" onchange="toggleCambioQty()">
-            <option value="">Eliminar</option>
-          </select>
-        </div>
-      </div>
-      <div id="cambio-qty-row" class="hidden" style="margin-bottom:10px">
-        <label>Cantidad del sustituto (kg/sem)</label>
-        <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
-          <input type="number" id="cambio-qty" min="0.1" step="0.1" placeholder="Ej: 10" style="width:100px">
-          <span style="font-size:11px;color:#475569">kg/sem — puede ser diferente al original</span>
-        </div>
-      </div>
-      <button class="btn-outline-blue" id="btn-agregar-cambio">+ Agregar este cambio a la lista</button>
+```
+<!-- Formulario para agregar cambio -->
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px;margin-bottom:12px">
+  <div class="vs-row">
+    <div>
+      <label>Alimento a cambiar</label>
+      <select id="cambio-from"></select>
     </div>
-
-    <!-- Lista de cambios pendientes -->
-    <div id="cambios-lista"></div>
-
-    <!-- Selector de indicador -->
-    <div style="margin:14px 0 10px">
-      <label style="margin-bottom:8px;display:block">Indicador a analizar</label>
-      <div class="chips" id="cambio-metric-chips"></div>
+    <div class="vs-mid">&#8594;</div>
+    <div>
+      <label>Sustituir por</label>
+      <select id="cambio-to" onchange="toggleCambioQty()">
+        <option value="">Eliminar</option>
+      </select>
     </div>
-
-    <button class="btn-calc" id="btn-calcular">Calcular mi impacto personal</button>
-
-    <!-- Resultados -->
-    <div id="cambio-resultado" class="hidden">
-      <!-- Resultados por producto -->
-      <div id="resultados-individuales"></div>
-      <!-- Total combinado (solo si hay más de 1 cambio) -->
-      <div id="resultado-total" class="hidden"></div>
+  </div>
+  <div id="cambio-qty-row" class="hidden" style="margin-bottom:10px">
+    <label>Cantidad del sustituto (kg/sem)</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+      <input type="number" id="cambio-qty" min="0.1" step="0.1" placeholder="Ej: 10" style="width:100px">
+      <span style="font-size:11px;color:#475569">kg/sem — puede ser diferente al original</span>
     </div>
+  </div>
+  <button class="btn-outline-blue" id="btn-agregar-cambio">+ Agregar este cambio a la lista</button>
+</div>
+
+<!-- Lista de cambios pendientes -->
+<div id="cambios-lista"></div>
+
+<!-- Selector de indicador -->
+<div style="margin:14px 0 10px">
+  <label style="margin-bottom:8px;display:block">Indicador a analizar</label>
+  <div class="chips" id="cambio-metric-chips"></div>
+</div>
+
+<button class="btn-calc" id="btn-calcular">Calcular mi impacto personal</button>
+
+<!-- Resultados -->
+<div id="cambio-resultado" class="hidden">
+  <!-- Resultados por producto -->
+  <div id="resultados-individuales"></div>
+  <!-- Total combinado (solo si hay más de 1 cambio) -->
+  <div id="resultado-total" class="hidden"></div>
+</div>
+```
+
   </div>
 
   <div class="empty" id="empty-state">
@@ -570,14 +575,19 @@ function calcularCambio(){
     var eqs=EQUIV[metId];
 
     // tarjeta semanal individual con equivalencias
+    var semAbs=Math.abs(ahorro);
     var semEqsH=eqs.map(function(e){
-      var n=Math.abs(ahorro)/e.div;
+      var n=semAbs/e.div;
       return '<div class="proj-eq">'+e.icon+' <span>'+n.toFixed(1)+'</span> '+e.ref+'</div>';
     }).join("");
-    var semCard='<div class="semana-card">'+
-      '<div class="semana-label">&#128336; Ahorro esta semana</div>'+
-      '<div class="semana-val">'+fmtFull(Math.abs(ahorro),met.unit)+'</div>'+
-      '<div class="semana-sub">'+(ahorro>=0?"menos de "+met.lbl+" esta semana":"mas de "+met.lbl+" esta semana")+'</div>'+
+    var semLbl=ahorro>=0?"&#128336; Ahorro esta semana":"&#128314; Aumento esta semana";
+    var semColor=ahorro>=0?"#38bdf8":"#f87171";
+    var semBg=ahorro>=0?"rgba(56,189,248,0.08)":"rgba(239,68,68,0.08)";
+    var semBorder=ahorro>=0?"rgba(56,189,248,0.25)":"rgba(239,68,68,0.3)";
+    var semCard='<div class="semana-card" style="background:'+semBg+';border:1px solid '+semBorder+'">'+
+      '<div class="semana-label" style="color:'+semColor+'">'+semLbl+'</div>'+
+      '<div class="semana-val" style="color:'+semColor+'">'+fmtFull(semAbs,met.unit)+'</div>'+
+      '<div class="semana-sub">'+(ahorro>=0?"- "+fmtFull(semAbs,met.unit)+" de "+met.lbl+" esta semana":"+ "+fmtFull(semAbs,met.unit)+" de "+met.lbl+" esta semana")+'</div>'+
       '<div style="margin-top:8px;text-align:left">'+semEqsH+'</div>'+
     '</div>';
 
@@ -587,10 +597,13 @@ function calcularCambio(){
       var eqsH=eqs.map(function(e){
         return '<div class="proj-eq">'+e.icon+' <span>'+(tot/e.div).toFixed(1)+'</span> '+e.ref+'</div>';
       }).join("");
-      return '<div class="proj-card">'+
+      var projColor=ahorro>=0?"rgba(74,222,128,0.06)":"rgba(239,68,68,0.06)";
+      var projBorder=ahorro>=0?"rgba(74,222,128,0.15)":"rgba(239,68,68,0.2)";
+      var projLbl=ahorro>=0?'ahorradas':'adicionales de consumo';
+      return '<div class="proj-card" style="background:'+projColor+';border:1px solid '+projBorder+'">'+
         '<div class="proj-period">'+p.label+'</div>'+
         '<div class="proj-val">'+fmtFull(Math.abs(tot),met.unit)+'</div>'+
-        '<div class="proj-saved">'+(ahorro>=0?"ahorradas":"adicionales")+'</div>'+
+        '<div class="proj-saved" style="color:'+(ahorro>=0?"#4ade80":"#f87171")+'">'+projLbl+'</div>'+
         '<div class="proj-eqs">'+eqsH+'</div></div>';
     }).join("");
 
@@ -617,14 +630,19 @@ function calcularCambio(){
   var totalEl=document.getElementById("resultado-total");
   if(state.cambios.length>1){
     var eqs=EQUIV[metId];
+    var totalAbs=Math.abs(totalAhorro);
     var semTotalEqsH=eqs.map(function(e){
-      var n=Math.abs(totalAhorro)/e.div;
+      var n=totalAbs/e.div;
       return '<div class="proj-eq">'+e.icon+' <span>'+n.toFixed(1)+'</span> '+e.ref+'</div>';
     }).join("");
-    var semTotalCard='<div class="semana-card">'+
-      '<div class="semana-label">&#9889; Ahorro TOTAL esta semana</div>'+
-      '<div class="semana-val">'+fmtFull(Math.abs(totalAhorro),met.unit)+'</div>'+
-      '<div class="semana-sub">'+(totalAhorro>=0?"menos de "+met.lbl+" esta semana":"mas de "+met.lbl+" esta semana")+'</div>'+
+    var tLbl=totalAhorro>=0?"&#9889; Ahorro TOTAL esta semana":"&#128314; Aumento TOTAL esta semana";
+    var tColor=totalAhorro>=0?"#38bdf8":"#f87171";
+    var tBg=totalAhorro>=0?"rgba(56,189,248,0.08)":"rgba(239,68,68,0.08)";
+    var tBorder=totalAhorro>=0?"rgba(56,189,248,0.25)":"rgba(239,68,68,0.3)";
+    var semTotalCard='<div class="semana-card" style="background:'+tBg+';border:1px solid '+tBorder+'">'+
+      '<div class="semana-label" style="color:'+tColor+'">'+tLbl+'</div>'+
+      '<div class="semana-val" style="color:'+tColor+'">'+fmtFull(totalAbs,met.unit)+'</div>'+
+      '<div class="semana-sub">'+(totalAhorro>=0?"- "+fmtFull(totalAbs,met.unit)+" de "+met.lbl+" esta semana":"+ "+fmtFull(totalAbs,met.unit)+" de "+met.lbl+" esta semana")+'</div>'+
       '<div style="margin-top:8px;text-align:left">'+semTotalEqsH+'</div>'+
     '</div>';
     var totalProjH=PROYECCIONES.filter(function(p){return p.id!=="sem";}).map(function(p){
@@ -632,10 +650,13 @@ function calcularCambio(){
       var eqsH=eqs.map(function(e){
         return '<div class="proj-eq">'+e.icon+' <span>'+(tot/e.div).toFixed(1)+'</span> '+e.ref+'</div>';
       }).join("");
-      return '<div class="proj-card">'+
+      var tpColor=totalAhorro>=0?"rgba(74,222,128,0.06)":"rgba(239,68,68,0.06)";
+      var tpBorder=totalAhorro>=0?"rgba(74,222,128,0.15)":"rgba(239,68,68,0.2)";
+      var tpLbl=totalAhorro>=0?'ahorradas':'adicionales de consumo';
+      return '<div class="proj-card" style="background:'+tpColor+';border:1px solid '+tpBorder+'">'+
         '<div class="proj-period">'+p.label+'</div>'+
         '<div class="proj-val">'+fmtFull(Math.abs(tot),met.unit)+'</div>'+
-        '<div class="proj-saved">'+(totalAhorro>=0?"ahorradas":"adicionales")+'</div>'+
+        '<div class="proj-saved" style="color:'+(totalAhorro>=0?"#4ade80":"#f87171")+'">'+tpLbl+'</div>'+
         '<div class="proj-eqs">'+eqsH+'</div></div>';
     }).join("");
     var pct=0;
@@ -689,5 +710,6 @@ function addItem(){
 
 render();
 </script>
+
 </body>
 </html>
